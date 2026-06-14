@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ابزار محاسبه سن</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f5f5f5;
+      padding: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>محاسبه سن دقیق</h2>
+  <input type="date" id="birthdate">
+  <br>
+  <button onclick="calcAge()">محاسبه</button>
+  <h3 id="result"></h3>
+</div>
+
+<script>
+function calcAge() {
+  let birth = new Date(document.getElementById("birthdate").value);
+  let today = new Date();
+
+  let age = today.getFullYear() - birth.getFullYear();
+  let m = today.getMonth() - birth.getMonth();
+
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+
+  document.getElementById("result").innerText =
+    "سن شما: " + age + " سال";
+}
+</script>
+
+</body>
+</html>
