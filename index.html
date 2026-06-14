@@ -22,15 +22,20 @@
       border-radius: 15px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      width: 300px;
+      width: 320px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
     }
 
     input {
       padding: 10px;
-      width: 90%;
+      width: 100%;
       margin-top: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
+      font-size: 14px;
     }
 
     button {
@@ -43,6 +48,7 @@
       color: white;
       font-size: 16px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     button:hover {
@@ -52,6 +58,7 @@
     #result {
       margin-top: 15px;
       font-weight: bold;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -63,14 +70,23 @@
 
     <input type="date" id="birthdate">
 
-    <button onclick="calcAge()">محاسبه</button>
+    <button onclick="calcAge()">محاسبه سن</button>
 
     <div id="result"></div>
   </div>
 
   <script>
     function calcAge() {
-      let birth = new Date(document.getElementById("birthdate").value);
+      let birthValue = document.getElementById("birthdate").value;
+      let result = document.getElementById("result");
+
+      if (!birthValue) {
+        result.innerText = "لطفاً تاریخ تولد را وارد کنید";
+        result.style.color = "red";
+        return;
+      }
+
+      let birth = new Date(birthValue);
       let today = new Date();
 
       let age = today.getFullYear() - birth.getFullYear();
@@ -80,8 +96,8 @@
         age--;
       }
 
-      document.getElementById("result").innerText =
-        "سن شما: " + age + " سال";
+      result.style.color = "black";
+      result.innerText = "سن شما: " + age + " سال";
     }
   </script>
 
