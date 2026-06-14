@@ -2,53 +2,88 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>ابزار محاسبه سن</title>
+  <title>محاسبه سن دقیق</title>
+
   <style>
     body {
+      margin: 0;
       font-family: sans-serif;
-      text-align: center;
-      background: #f5f5f5;
-      padding: 50px;
+      direction: rtl;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin: 10px;
-    }
+
     .box {
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    input {
+      padding: 10px;
+      width: 90%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
     }
   </style>
 </head>
+
 <body>
 
-<div class="box">
-  <h2>محاسبه سن دقیق</h2>
-  <input type="date" id="birthdate">
-  <br>
-  <button onclick="calcAge()">محاسبه</button>
-  <h3 id="result"></h3>
-</div>
+  <div class="box">
+    <h2>محاسبه سن دقیق</h2>
 
-<script>
-function calcAge() {
-  let birth = new Date(document.getElementById("birthdate").value);
-  let today = new Date();
+    <input type="date" id="birthdate">
 
-  let age = today.getFullYear() - birth.getFullYear();
-  let m = today.getMonth() - birth.getMonth();
+    <button onclick="calcAge()">محاسبه</button>
 
-  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
-    age--;
-  }
+    <div id="result"></div>
+  </div>
 
-  document.getElementById("result").innerText =
-    "سن شما: " + age + " سال";
-}
-</script>
+  <script>
+    function calcAge() {
+      let birth = new Date(document.getElementById("birthdate").value);
+      let today = new Date();
+
+      let age = today.getFullYear() - birth.getFullYear();
+      let m = today.getMonth() - birth.getMonth();
+
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+        age--;
+      }
+
+      document.getElementById("result").innerText =
+        "سن شما: " + age + " سال";
+    }
+  </script>
 
 </body>
 </html>
